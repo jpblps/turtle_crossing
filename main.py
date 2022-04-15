@@ -29,16 +29,17 @@ while game_is_on:
     car_manager.traffic_control()
     car_manager.move_cars()
 
+    scoreboard.track_level()
+    # Detect if player has gotten to the finish line.
     if player.ycor() > 270:
         player.player_wins()
         scoreboard.level += 1
         car_manager.level_up()
         time.sleep(3)
-
+    # Detect collision with vehicles.
     for car in car_manager.cars:
         if player.distance(car) < 29:
             scoreboard.player_loses()
             time.sleep(0.1)
             game_is_on = False
 
-    scoreboard.track_level()
